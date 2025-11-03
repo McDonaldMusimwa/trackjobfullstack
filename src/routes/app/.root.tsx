@@ -1,12 +1,12 @@
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
+import { HeadContent, Scripts, createRootRoute, createFileRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 
-import Header from '../components/Header'
+import Header from '../../components/Header'
 
 import appCss from '../styles.css?url'
 
-export const Route = createRootRoute({
+export const Route = createFileRoute()({
   head: () => ({
     meta: [
       {
@@ -38,7 +38,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="xl:flex">
-       { /*  <Header />*/}
+        <Header />
         <main className="flex-1 ml-40 p-4">{children}</main>
         <TanStackDevtools
           config={{

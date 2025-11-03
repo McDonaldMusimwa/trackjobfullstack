@@ -12,37 +12,37 @@ type NavLink=|{
 export const navlinks:Array<NavLink> =[
 
     {
-        link:"/",
+        link:"/app",
         name:"Dashboard",
         icon:CircleGaugeIcon,
         id:1
     },
     {
-        link:"/Applications",
+        link:"/applications",
         name:"Applications",
         icon:FileTextIcon,
         id:2
     },
       {
-        link:"/Notes",
+        link:"/notes",
         name:"Notes",
         icon:NotebookPen,
         id:3
     },
       {
-        link:"/Interviews",
+        link:"/interviews",
         name:"Interviews",
         icon:Calendar1,
         id:4
     },
     {
-        link:"/Settings",
+        link:"/settings",
         name:"Settings",
         icon:Settings,
         id:5
     },
     {
-        link:"/AddApplication",
+        link:"app/AddApplication",
         name:"Add App",
         icon:FilePlus,
         id:6

@@ -9,18 +9,55 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppIndexRouteImport } from './routes/app/index'
+import { Route as AppSettingsIndexRouteImport } from './routes/app/settings/index'
+import { Route as AppNotesIndexRouteImport } from './routes/app/notes/index'
+import { Route as AppInterviewsIndexRouteImport } from './routes/app/interviews/index'
+import { Route as AppApplicationsIndexRouteImport } from './routes/app/applications/index'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
 import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api-request'
 import { Route as DemoApiNamesRouteImport } from './routes/demo/api.names'
+import { Route as AppCompaniesCompaniesRouteImport } from './routes/app/companies/companies'
 import { Route as DemoStartSsrIndexRouteImport } from './routes/demo/start.ssr.index'
 import { Route as DemoStartSsrSpaModeRouteImport } from './routes/demo/start.ssr.spa-mode'
 import { Route as DemoStartSsrFullSsrRouteImport } from './routes/demo/start.ssr.full-ssr'
 import { Route as DemoStartSsrDataOnlyRouteImport } from './routes/demo/start.ssr.data-only'
 
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/app/',
+  path: '/app/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppSettingsRoute,
+} as any)
+const AppNotesIndexRoute = AppNotesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppNotesRoute,
+} as any)
+const AppInterviewsIndexRoute = AppInterviewsIndexRouteImport.update({
+  id: '/app/interviews/',
+  path: '/app/interviews/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppApplicationsIndexRoute = AppApplicationsIndexRouteImport.update({
+  id: '/app/applications/',
+  path: '/app/applications/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemoStartServerFuncsRoute = DemoStartServerFuncsRouteImport.update({
@@ -36,6 +73,11 @@ const DemoStartApiRequestRoute = DemoStartApiRequestRouteImport.update({
 const DemoApiNamesRoute = DemoApiNamesRouteImport.update({
   id: '/demo/api/names',
   path: '/demo/api/names',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppCompaniesCompaniesRoute = AppCompaniesCompaniesRouteImport.update({
+  id: '/app/companies/companies',
+  path: '/app/companies/companies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemoStartSsrIndexRoute = DemoStartSsrIndexRouteImport.update({
@@ -61,9 +103,16 @@ const DemoStartSsrDataOnlyRoute = DemoStartSsrDataOnlyRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/app': typeof AppIndexRoute
+  '/app/companies/companies': typeof AppCompaniesCompaniesRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
+  '/app/applications': typeof AppApplicationsIndexRoute
+  '/app/interviews': typeof AppInterviewsIndexRoute
+  '/app/notes/': typeof AppNotesIndexRoute
+  '/app/settings/': typeof AppSettingsIndexRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
@@ -71,9 +120,16 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/app': typeof AppIndexRoute
+  '/app/companies/companies': typeof AppCompaniesCompaniesRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
+  '/app/applications': typeof AppApplicationsIndexRoute
+  '/app/interviews': typeof AppInterviewsIndexRoute
+  '/app/notes': typeof AppNotesIndexRoute
+  '/app/settings': typeof AppSettingsIndexRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
@@ -82,9 +138,16 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/app/': typeof AppIndexRoute
+  '/app/companies/companies': typeof AppCompaniesCompaniesRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
+  '/app/applications/': typeof AppApplicationsIndexRoute
+  '/app/interviews/': typeof AppInterviewsIndexRoute
+  '/app/notes/': typeof AppNotesIndexRoute
+  '/app/settings/': typeof AppSettingsIndexRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
@@ -94,9 +157,16 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
+    | '/app'
+    | '/app/companies/companies'
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
+    | '/app/applications'
+    | '/app/interviews'
+    | '/app/notes/'
+    | '/app/settings/'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
@@ -104,9 +174,16 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
+    | '/app'
+    | '/app/companies/companies'
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
+    | '/app/applications'
+    | '/app/interviews'
+    | '/app/notes'
+    | '/app/settings'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
@@ -114,9 +191,16 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
+    | '/app/'
+    | '/app/companies/companies'
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
+    | '/app/applications/'
+    | '/app/interviews/'
+    | '/app/notes/'
+    | '/app/settings/'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
@@ -125,9 +209,14 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AppIndexRoute: typeof AppIndexRoute
+  AppCompaniesCompaniesRoute: typeof AppCompaniesCompaniesRoute
   DemoApiNamesRoute: typeof DemoApiNamesRoute
   DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
   DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
+  AppApplicationsIndexRoute: typeof AppApplicationsIndexRoute
+  AppInterviewsIndexRoute: typeof AppInterviewsIndexRoute
   DemoStartSsrDataOnlyRoute: typeof DemoStartSsrDataOnlyRoute
   DemoStartSsrFullSsrRoute: typeof DemoStartSsrFullSsrRoute
   DemoStartSsrSpaModeRoute: typeof DemoStartSsrSpaModeRoute
@@ -136,11 +225,53 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/': {
+      id: '/app/'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/settings/': {
+      id: '/app/settings/'
+      path: '/'
+      fullPath: '/app/settings/'
+      preLoaderRoute: typeof AppSettingsIndexRouteImport
+      parentRoute: typeof AppSettingsRoute
+    }
+    '/app/notes/': {
+      id: '/app/notes/'
+      path: '/'
+      fullPath: '/app/notes/'
+      preLoaderRoute: typeof AppNotesIndexRouteImport
+      parentRoute: typeof AppNotesRoute
+    }
+    '/app/interviews/': {
+      id: '/app/interviews/'
+      path: '/app/interviews'
+      fullPath: '/app/interviews'
+      preLoaderRoute: typeof AppInterviewsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/applications/': {
+      id: '/app/applications/'
+      path: '/app/applications'
+      fullPath: '/app/applications'
+      preLoaderRoute: typeof AppApplicationsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demo/start/server-funcs': {
@@ -162,6 +293,13 @@ declare module '@tanstack/react-router' {
       path: '/demo/api/names'
       fullPath: '/demo/api/names'
       preLoaderRoute: typeof DemoApiNamesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/companies/companies': {
+      id: '/app/companies/companies'
+      path: '/app/companies/companies'
+      fullPath: '/app/companies/companies'
+      preLoaderRoute: typeof AppCompaniesCompaniesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demo/start/ssr/': {
@@ -197,9 +335,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AppIndexRoute: AppIndexRoute,
+  AppCompaniesCompaniesRoute: AppCompaniesCompaniesRoute,
   DemoApiNamesRoute: DemoApiNamesRoute,
   DemoStartApiRequestRoute: DemoStartApiRequestRoute,
   DemoStartServerFuncsRoute: DemoStartServerFuncsRoute,
+  AppApplicationsIndexRoute: AppApplicationsIndexRoute,
+  AppInterviewsIndexRoute: AppInterviewsIndexRoute,
   DemoStartSsrDataOnlyRoute: DemoStartSsrDataOnlyRoute,
   DemoStartSsrFullSsrRoute: DemoStartSsrFullSsrRoute,
   DemoStartSsrSpaModeRoute: DemoStartSsrSpaModeRoute,
