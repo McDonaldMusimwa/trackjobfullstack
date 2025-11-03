@@ -1,13 +1,10 @@
-
-
 import { useEffect, useState } from 'react'
 
 import { DesktopHeader } from './ui/desktop'
 import { MobileHeader } from './ui/mobile'
 
 export default function Header() {
-
-  const [screensize, setScreensize] = useState(700)
+  const [screensize, setScreensize] = useState<number | null>(null)
 
   useEffect(() => {
     function handleresize() {
@@ -20,9 +17,15 @@ export default function Header() {
   }, [])
 
   console.log('screen size', screensize)
+  if (screensize === null) return null
   return (
     <>
-     {screensize >700 ?<DesktopHeader/>:<MobileHeader/>}
+      <div className="hidden md:block">
+        <DesktopHeader />
+      </div>
+      <div className="block md:hidden">
+        <MobileHeader />
+      </div>
     </>
   )
 }

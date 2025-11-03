@@ -1,5 +1,5 @@
 
-import {File,Home,Telescope,} from 'lucide-react'
+import {Calendar1,CircleGaugeIcon,FilePlus,FileTextIcon,NotebookPen,Settings} from 'lucide-react'
 import type{ElementType} from "react"
 
 type NavLink=|{
@@ -13,20 +13,38 @@ export const navlinks:Array<NavLink> =[
 
     {
         link:"/",
-        name:"Home",
-        icon:Home,
+        name:"Dashboard",
+        icon:CircleGaugeIcon,
         id:1
     },
-      {
-        link:"/Documents",
-        name:"Uploads",
-        icon:File,
+    {
+        link:"/Applications",
+        name:"Applications",
+        icon:FileTextIcon,
         id:2
     },
       {
-        link:"/Explore",
-        name:"Explore",
-        icon:Telescope,
+        link:"/Notes",
+        name:"Notes",
+        icon:NotebookPen,
         id:3
+    },
+      {
+        link:"/Interviews",
+        name:"Interviews",
+        icon:Calendar1,
+        id:4
+    },
+    {
+        link:"/Settings",
+        name:"Settings",
+        icon:Settings,
+        id:5
+    },
+    {
+        link:"/AddApplication",
+        name:"Add App",
+        icon:FilePlus,
+        id:6
     }
 ]
