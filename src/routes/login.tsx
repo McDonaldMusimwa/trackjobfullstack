@@ -1,10 +1,23 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { FormEvent } from 'react';
+import { useNavigate } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/login')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
+  const navigation = useNavigate()
+
+  function authHandler(formData:FormEvent<Element>){
+
+    const form={
+      email:formData.get('email'),
+      password:formData.get('password')
+    }
+navigation({to:"/app"})
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f7fff1] p-4">
       <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-8 space-y-6">
@@ -12,11 +25,13 @@ function RouteComponent() {
         <p className="text-center text-gray-600">Sign in to continue tracking your job applications</p>
 
 
-        <form className="space-y-4">
+        <form action={authHandler} className="space-y-4">
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Email</label>
+            <label htmlFor='email' className="block text-gray-700 font-medium mb-1">Email</label>
             <input
+            id='email'
               type="email"
+              name='email'
               className="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:border-[#4f772d]"
               placeholder="you@example.com"
             />
@@ -24,8 +39,10 @@ function RouteComponent() {
 
 
           <div>
-            <label className="block text-gray-700 font-medium mb-1">Password</label>
+            <label htmlFor='password' className="block text-gray-700 font-medium mb-1">Password</label>
             <input
+            id='password'
+            name="password"
               type="password"
               className="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:border-[#4f772d]"
               placeholder="••••••••"
