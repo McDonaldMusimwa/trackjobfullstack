@@ -9,7 +9,9 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AboutRouteImport } from './routes/about'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as HowitworksRouteImport } from './routes/howitworks'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app/index'
 import { Route as AppSettingsIndexRouteImport } from './routes/app/settings/index'
@@ -25,9 +27,19 @@ import { Route as DemoStartSsrSpaModeRouteImport } from './routes/demo/start.ssr
 import { Route as DemoStartSsrFullSsrRouteImport } from './routes/demo/start.ssr.full-ssr'
 import { Route as DemoStartSsrDataOnlyRouteImport } from './routes/demo/start.ssr.data-only'
 
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowitworksRoute = HowitworksRouteImport.update({
+  id: '/howitworks',
+  path: '/howitworks',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -41,14 +53,14 @@ const AppIndexRoute = AppIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AppSettingsRoute,
+  id: '/app/settings/',
+  path: '/app/settings/',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AppNotesIndexRoute = AppNotesIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AppNotesRoute,
+  id: '/app/notes/',
+  path: '/app/notes/',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AppInterviewsIndexRoute = AppInterviewsIndexRouteImport.update({
   id: '/app/interviews/',
@@ -103,7 +115,9 @@ const DemoStartSsrDataOnlyRoute = DemoStartSsrDataOnlyRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/howitworks': typeof HowitworksRoute
+  '/login': typeof LoginRoute
+  '/pricing': typeof PricingRoute
   '/app': typeof AppIndexRoute
   '/app/companies/companies': typeof AppCompaniesCompaniesRoute
   '/demo/api/names': typeof DemoApiNamesRoute
@@ -111,8 +125,8 @@ export interface FileRoutesByFullPath {
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/app/applications': typeof AppApplicationsIndexRoute
   '/app/interviews': typeof AppInterviewsIndexRoute
-  '/app/notes/': typeof AppNotesIndexRoute
-  '/app/settings/': typeof AppSettingsIndexRoute
+  '/app/notes': typeof AppNotesIndexRoute
+  '/app/settings': typeof AppSettingsIndexRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
@@ -120,7 +134,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/howitworks': typeof HowitworksRoute
+  '/login': typeof LoginRoute
+  '/pricing': typeof PricingRoute
   '/app': typeof AppIndexRoute
   '/app/companies/companies': typeof AppCompaniesCompaniesRoute
   '/demo/api/names': typeof DemoApiNamesRoute
@@ -138,7 +154,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/howitworks': typeof HowitworksRoute
+  '/login': typeof LoginRoute
+  '/pricing': typeof PricingRoute
   '/app/': typeof AppIndexRoute
   '/app/companies/companies': typeof AppCompaniesCompaniesRoute
   '/demo/api/names': typeof DemoApiNamesRoute
@@ -157,7 +175,9 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/about'
+    | '/howitworks'
+    | '/login'
+    | '/pricing'
     | '/app'
     | '/app/companies/companies'
     | '/demo/api/names'
@@ -165,8 +185,8 @@ export interface FileRouteTypes {
     | '/demo/start/server-funcs'
     | '/app/applications'
     | '/app/interviews'
-    | '/app/notes/'
-    | '/app/settings/'
+    | '/app/notes'
+    | '/app/settings'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
@@ -174,7 +194,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/about'
+    | '/howitworks'
+    | '/login'
+    | '/pricing'
     | '/app'
     | '/app/companies/companies'
     | '/demo/api/names'
@@ -191,7 +213,9 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/about'
+    | '/howitworks'
+    | '/login'
+    | '/pricing'
     | '/app/'
     | '/app/companies/companies'
     | '/demo/api/names'
@@ -209,7 +233,9 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
+  HowitworksRoute: typeof HowitworksRoute
+  LoginRoute: typeof LoginRoute
+  PricingRoute: typeof PricingRoute
   AppIndexRoute: typeof AppIndexRoute
   AppCompaniesCompaniesRoute: typeof AppCompaniesCompaniesRoute
   DemoApiNamesRoute: typeof DemoApiNamesRoute
@@ -217,6 +243,8 @@ export interface RootRouteChildren {
   DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
   AppApplicationsIndexRoute: typeof AppApplicationsIndexRoute
   AppInterviewsIndexRoute: typeof AppInterviewsIndexRoute
+  AppNotesIndexRoute: typeof AppNotesIndexRoute
+  AppSettingsIndexRoute: typeof AppSettingsIndexRoute
   DemoStartSsrDataOnlyRoute: typeof DemoStartSsrDataOnlyRoute
   DemoStartSsrFullSsrRoute: typeof DemoStartSsrFullSsrRoute
   DemoStartSsrSpaModeRoute: typeof DemoStartSsrSpaModeRoute
@@ -225,11 +253,25 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/howitworks': {
+      id: '/howitworks'
+      path: '/howitworks'
+      fullPath: '/howitworks'
+      preLoaderRoute: typeof HowitworksRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -248,17 +290,17 @@ declare module '@tanstack/react-router' {
     }
     '/app/settings/': {
       id: '/app/settings/'
-      path: '/'
-      fullPath: '/app/settings/'
+      path: '/app/settings'
+      fullPath: '/app/settings'
       preLoaderRoute: typeof AppSettingsIndexRouteImport
-      parentRoute: typeof AppSettingsRoute
+      parentRoute: typeof rootRouteImport
     }
     '/app/notes/': {
       id: '/app/notes/'
-      path: '/'
-      fullPath: '/app/notes/'
+      path: '/app/notes'
+      fullPath: '/app/notes'
       preLoaderRoute: typeof AppNotesIndexRouteImport
-      parentRoute: typeof AppNotesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/app/interviews/': {
       id: '/app/interviews/'
@@ -335,7 +377,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
+  HowitworksRoute: HowitworksRoute,
+  LoginRoute: LoginRoute,
+  PricingRoute: PricingRoute,
   AppIndexRoute: AppIndexRoute,
   AppCompaniesCompaniesRoute: AppCompaniesCompaniesRoute,
   DemoApiNamesRoute: DemoApiNamesRoute,
@@ -343,6 +387,8 @@ const rootRouteChildren: RootRouteChildren = {
   DemoStartServerFuncsRoute: DemoStartServerFuncsRoute,
   AppApplicationsIndexRoute: AppApplicationsIndexRoute,
   AppInterviewsIndexRoute: AppInterviewsIndexRoute,
+  AppNotesIndexRoute: AppNotesIndexRoute,
+  AppSettingsIndexRoute: AppSettingsIndexRoute,
   DemoStartSsrDataOnlyRoute: DemoStartSsrDataOnlyRoute,
   DemoStartSsrFullSsrRoute: DemoStartSsrFullSsrRoute,
   DemoStartSsrSpaModeRoute: DemoStartSsrSpaModeRoute,
