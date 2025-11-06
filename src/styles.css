@@ -1,5 +1,7 @@
 @import "tailwindcss";
-
+:root{
+  --green:#4f772d;
+}
 body {
   @apply m-0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

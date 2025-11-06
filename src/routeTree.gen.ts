@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as HowitworksRouteImport } from './routes/howitworks'
+import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app/index'
 import { Route as AppSettingsIndexRouteImport } from './routes/app/settings/index'
@@ -40,6 +41,11 @@ const LoginRoute = LoginRouteImport.update({
 const HowitworksRoute = HowitworksRouteImport.update({
   id: '/howitworks',
   path: '/howitworks',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeaturesRoute = FeaturesRouteImport.update({
+  id: '/features',
+  path: '/features',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -115,6 +121,7 @@ const DemoStartSsrDataOnlyRoute = DemoStartSsrDataOnlyRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/features': typeof FeaturesRoute
   '/howitworks': typeof HowitworksRoute
   '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
@@ -134,6 +141,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/features': typeof FeaturesRoute
   '/howitworks': typeof HowitworksRoute
   '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
@@ -154,6 +162,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/features': typeof FeaturesRoute
   '/howitworks': typeof HowitworksRoute
   '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
@@ -175,6 +184,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/features'
     | '/howitworks'
     | '/login'
     | '/pricing'
@@ -194,6 +204,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/features'
     | '/howitworks'
     | '/login'
     | '/pricing'
@@ -213,6 +224,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/features'
     | '/howitworks'
     | '/login'
     | '/pricing'
@@ -233,6 +245,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FeaturesRoute: typeof FeaturesRoute
   HowitworksRoute: typeof HowitworksRoute
   LoginRoute: typeof LoginRoute
   PricingRoute: typeof PricingRoute
@@ -272,6 +285,13 @@ declare module '@tanstack/react-router' {
       path: '/howitworks'
       fullPath: '/howitworks'
       preLoaderRoute: typeof HowitworksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/features': {
+      id: '/features'
+      path: '/features'
+      fullPath: '/features'
+      preLoaderRoute: typeof FeaturesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -377,6 +397,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FeaturesRoute: FeaturesRoute,
   HowitworksRoute: HowitworksRoute,
   LoginRoute: LoginRoute,
   PricingRoute: PricingRoute,
